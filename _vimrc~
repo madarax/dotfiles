@@ -94,18 +94,18 @@ autocmd BufWritePre * :%s/\s\+$//ge
 "保存時にtabをスペースに変換する
 autocmd BufWritePre * :%s/\t/ /ge
 
-"neocomplcache用の設定
+##neocomplcache用の設定
 function InsertTabWrapper()
-  if pumvisible()
-    return "\<c-n>"
-  endif
-  let col = col('.') - 1
-  if !col || getline('.')[col - 1] !~ '\k\|<\|/'
-    return "\<tab>"
-   elseif exists('&omnifunc') && &omnifunc == ''
-    return "\<c-n>"
-   else
-    return "\<c-x>\<c-o>"
-   endif
-endfunction
-inoremap <tab> <c-r>=InsertTabWrapper()<cr>
+    if pumvisible()
+                return "\<c-n>"
+                    endif
+                        let col = col('.') - 1
+                            if !col || getline('.')[col - 1] !~ '\k\|<\|/'
+                                        return "\<tab>"
+                                            elseif exists('&omnifunc') && &omnifunc == ''
+                                                    return "\<c-n>"
+                                                        else
+                                                                    return "\<c-x>\<c-o>"
+                                                                        endif
+                                                                        endfunction
+                                                                        inoremap <tab> <c-r>=InsertTabWrapper()<cr>
